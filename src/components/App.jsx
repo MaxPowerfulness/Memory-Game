@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRef } from 'react';
 import { useEffect } from 'react';
 import Header from './header';
 import CardCont from './cards';
@@ -7,30 +8,65 @@ import '../styles/App.css';
 function App() {
   const [bestScore, setBestScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
-  const [difficulty, setDifficulty] = useState({ difficulty: 'easy', number: 4 });
-  const easyModeChars = ['Homer Simpson', 'Marge Simpson', 'Bart Simpson', 'Lisa Simpson'];
+  const [difficulty, setDifficulty] = useState({ difficulty: 'Easy', number: 4 });
+  const [gameCharacterData, setGameCharacterData] = useState([]);
+  const [characters, setCharacters] = useState(['treecko', 'torchic', 'mudkip', 'pikachu']);
 
-  const characters = [];
-
-  useEffect(() => {
-    for (let i = 0; i < 4; i++) {
-      let promise = fetch(`https://thesimpsonsquoteapi.glitch.me/quotes?character=${easyModeChars[i]}`, {
-        mode: 'cors',
-      });
-      promise
-        .then((response) => response.json())
-        .then((data) => {
-          characters.push({ name: data[0].character, image: data[0].image });
-          console.log('data', data[0].character);
-        });
+  // Changes the difficulty of the game by creating more pokemons to choose from.
+  // Changes difficulty and characters state variables
+  function changeDifficulty() {
+    setGameCharacterData([]);
+    if (difficulty.difficulty === 'Easy') {
+      setDifficulty({ ...difficulty, difficulty: 'Medium', number: 8 });
+      setCharacters(['silcoon', 'cascoon', 'seedot', 'ralts', 'nincada', 'plusle', 'minun', 'bellossom']);
+    } else if (difficulty.difficulty === 'Medium') {
+      setDifficulty({ ...difficulty, difficulty: 'Hard', number: 12 });
+      setCharacters([
+        'muk',
+        'grimer',
+        'weezing',
+        'koffing',
+        'lileep',
+        'armaldo',
+        'cradily',
+        'sceptile',
+        'vileplume',
+        'cacnea',
+        'kecleon',
+        'tropius',
+      ]);
+    } else {
+      setDifficulty({ ...difficulty, difficulty: 'Easy', number: 4 });
+      setCharacters(['treecko', 'torchic', 'mudkip', 'pikachu']);
     }
-    console.log('list', characters);
+  }
+
+  // Fetches pokemon data from the pokemon api. A new call is made when difficulty is changed
+  useEffect(() => {
+    let characterData = [];
+    async function fetchData() {
+      for (let i = 0; i < characters.length; i++) {
+        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${characters[i]}`, {
+          mode: 'cors',
+        });
+        let data = await response.json();
+        console.log('data', data);
+        characterData.push({ name: data.name, image: data.sprites.front_default });
+      }
+      setGameCharacterData(gameCharacterData.concat(characterData));
+    }
+    fetchData();
   }, [difficulty]);
 
   return (
     <>
-      <Header bestScore={bestScore} currentScore={currentScore} />
-      <CardCont characters={characters} difficulty={difficulty} />
+      <Header
+        bestScore={bestScore}
+        currentScore={currentScore}
+        onDifficulty={changeDifficulty}
+        difficulty={difficulty}
+      />
+      <CardCont characters={gameCharacterData} />
     </>
   );
 }
