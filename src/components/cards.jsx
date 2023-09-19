@@ -11,6 +11,7 @@ function CardCont({ characters, selectionList, clearSeletionList, resetCurrentSc
         clearSeletionList={clearSeletionList}
         resetCurrentScore={resetCurrentScore}
         addOnePoint={addOnePoint}
+        characters={characters}
       />
     );
   });
@@ -22,7 +23,15 @@ function CardCont({ characters, selectionList, clearSeletionList, resetCurrentSc
   );
 }
 
-function Card({ name, picture, resetCurrentScore, clearSeletionList, selectionList, addOnePoint }) {
+function Card({ name, picture, resetCurrentScore, clearSeletionList, selectionList, addOnePoint, characters }) {
+  // Shuffles the order of the cards
+  function shuffleCharList(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
   function cardSelectionAction() {
     if (selectionList.includes(name)) {
       resetCurrentScore();
@@ -31,6 +40,7 @@ function Card({ name, picture, resetCurrentScore, clearSeletionList, selectionLi
     } else {
       selectionList.push(name);
       addOnePoint();
+      shuffleCharList(characters);
       console.log('selectionList', selectionList);
     }
   }
