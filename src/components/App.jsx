@@ -11,6 +11,22 @@ function App() {
   const [difficulty, setDifficulty] = useState({ difficulty: 'Easy', number: 4 });
   const [gameCharacterData, setGameCharacterData] = useState([]);
   const [characters, setCharacters] = useState(['treecko', 'torchic', 'mudkip', 'pikachu']);
+  const [selectionList, setSelectionList] = useState([]); // Keeps track of characters that have been selected
+
+  // Resets user selection list
+  function clearSeletionList() {
+    setSelectionList([]);
+  }
+
+  // Adds 1 point to the current score
+  function addOnePoint() {
+    setCurrentScore(currentScore + 1);
+  }
+
+  // Resets current score back to 0
+  function resetCurrentScore() {
+    setCurrentScore(0);
+  }
 
   // Changes the difficulty of the game by creating more pokemons to choose from.
   // Changes difficulty and characters state variables
@@ -50,7 +66,6 @@ function App() {
           mode: 'cors',
         });
         let data = await response.json();
-        console.log('data', data);
         characterData.push({ name: data.name, image: data.sprites.front_default });
       }
       setGameCharacterData(gameCharacterData.concat(characterData));
@@ -66,7 +81,13 @@ function App() {
         onDifficulty={changeDifficulty}
         difficulty={difficulty}
       />
-      <CardCont characters={gameCharacterData} />
+      <CardCont
+        characters={gameCharacterData}
+        selectionList={selectionList}
+        clearSeletionList={clearSeletionList}
+        resetCurrentScore={resetCurrentScore}
+        addOnePoint={addOnePoint}
+      />
     </>
   );
 }
