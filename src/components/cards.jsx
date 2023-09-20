@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 
-function CardCont({ characters, selectionList, clearSeletionList, resetCurrentScore, addOnePoint }) {
+function CardCont({ characters, selectionList, clearSeletionList, resetCurrentScore, addOnePoint, assignBestScore }) {
   let cardDeck = characters.map((character) => {
     return (
       <Card
@@ -12,6 +12,7 @@ function CardCont({ characters, selectionList, clearSeletionList, resetCurrentSc
         resetCurrentScore={resetCurrentScore}
         addOnePoint={addOnePoint}
         characters={characters}
+        assignBestScore={assignBestScore}
       />
     );
   });
@@ -23,7 +24,16 @@ function CardCont({ characters, selectionList, clearSeletionList, resetCurrentSc
   );
 }
 
-function Card({ name, picture, resetCurrentScore, clearSeletionList, selectionList, addOnePoint, characters }) {
+function Card({
+  name,
+  picture,
+  resetCurrentScore,
+  clearSeletionList,
+  selectionList,
+  addOnePoint,
+  characters,
+  assignBestScore,
+}) {
   // Shuffles the order of the cards
   function shuffleCharList(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -34,6 +44,7 @@ function Card({ name, picture, resetCurrentScore, clearSeletionList, selectionLi
 
   function cardSelectionAction() {
     if (selectionList.includes(name)) {
+      assignBestScore();
       resetCurrentScore();
       clearSeletionList();
       console.log('selectionList', selectionList);

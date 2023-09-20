@@ -1,9 +1,7 @@
-import { useState } from 'react';
-
 function Scoreboard({ bestScore, currentScore }) {
   return (
     <div>
-      <p>Best Score: {bestScore}</p>
+      <p>Best Score: {Math.max(...bestScore)}</p>
       <p>Current Score: {currentScore}</p>
     </div>
   );

@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useRef } from 'react';
 import { useEffect } from 'react';
 import Header from './header';
 import CardCont from './cards';
 import '../styles/App.css';
 
 function App() {
-  const [bestScore, setBestScore] = useState(0);
+  const [bestScore, setBestScore] = useState([0]);
   const [currentScore, setCurrentScore] = useState(0);
   const [difficulty, setDifficulty] = useState({ difficulty: 'Easy', number: 4 });
   const [gameCharacterData, setGameCharacterData] = useState([]);
@@ -26,6 +25,11 @@ function App() {
   // Resets current score back to 0
   function resetCurrentScore() {
     setCurrentScore(0);
+  }
+
+  // Stores scores after each round
+  function assignBestScore() {
+    setBestScore([...bestScore, currentScore]);
   }
 
   // Changes the difficulty of the game by creating more pokemons to choose from.
@@ -87,6 +91,7 @@ function App() {
         clearSeletionList={clearSeletionList}
         resetCurrentScore={resetCurrentScore}
         addOnePoint={addOnePoint}
+        assignBestScore={assignBestScore}
       />
     </>
   );
