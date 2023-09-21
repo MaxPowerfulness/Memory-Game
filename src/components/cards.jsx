@@ -1,4 +1,5 @@
 import { v4 } from 'uuid';
+import '../styles/card.css';
 
 function CardCont({ characters, selectionList, clearSeletionList, resetCurrentScore, addOnePoint, assignBestScore }) {
   let cardDeck = characters.map((character) => {
@@ -18,8 +19,7 @@ function CardCont({ characters, selectionList, clearSeletionList, resetCurrentSc
   });
   return (
     <main>
-      <ul>{cardDeck}</ul>
-      <p>Test</p>
+      <ul id="cardList">{cardDeck}</ul>
     </main>
   );
 }
@@ -57,7 +57,7 @@ function Card({
   }
 
   return (
-    <li onClick={cardSelectionAction}>
+    <li onClick={cardSelectionAction} className="card">
       <div>
         <h2>{name}</h2>
         <img src={picture} alt="Character" />

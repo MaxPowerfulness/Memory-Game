@@ -1,4 +1,5 @@
 import Scoreboard from './scoreboard';
+import '../styles/header.css';
 
 function Header({ bestScore, currentScore, onDifficulty, difficulty }) {
   return (
