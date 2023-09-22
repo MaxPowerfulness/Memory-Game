@@ -35,6 +35,7 @@ function App() {
   // Changes the difficulty of the game by creating more pokemons to choose from.
   // Changes difficulty and characters state variables
   function changeDifficulty() {
+    setCurrentScore(0);
     setGameCharacterData([]);
     if (difficulty.difficulty === 'Easy') {
       setDifficulty({ ...difficulty, difficulty: 'Medium', number: 8 });
