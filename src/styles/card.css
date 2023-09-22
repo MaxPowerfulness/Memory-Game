@@ -1,13 +1,23 @@
 #cardList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
-  width: 100%;
+  gap: 100px;
+  max-height: 90%;
 }
 
 .card {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px black solid
+  border: 3px black solid;
+  height: 200px;
+  width: 175px
+}
+
+.card:hover {
+  cursor: grab;
+}
+
+.cardProperties {
+  text-align: center;
 }

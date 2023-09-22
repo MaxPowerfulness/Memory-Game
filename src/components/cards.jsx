@@ -58,7 +58,7 @@ function Card({
 
   return (
     <li onClick={cardSelectionAction} className="card">
-      <div>
+      <div className="cardProperties">
         <h2>{name}</h2>
         <img src={picture} alt="Character" />
       </div>
