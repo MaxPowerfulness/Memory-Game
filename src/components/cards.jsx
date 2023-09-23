@@ -2,11 +2,16 @@ import { v4 } from 'uuid';
 import '../styles/card.css';
 
 function CardCont({ characters, selectionList, clearSeletionList, resetCurrentScore, addOnePoint, assignBestScore }) {
+  function upperCaseFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
   let cardDeck = characters.map((character) => {
+    let correctName = upperCaseFirstLetter(character.name);
     return (
       <Card
         key={v4()}
-        name={character.name}
+        name={correctName}
         picture={character.image}
         selectionList={selectionList}
         clearSeletionList={clearSeletionList}
