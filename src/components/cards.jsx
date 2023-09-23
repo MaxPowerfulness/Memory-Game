@@ -52,12 +52,10 @@ function Card({
       assignBestScore();
       resetCurrentScore();
       clearSeletionList();
-      console.log('selectionList', selectionList);
     } else {
       selectionList.push(name);
       addOnePoint();
       shuffleCharList(characters);
-      console.log('selectionList', selectionList);
     }
   }
 
