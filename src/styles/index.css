@@ -1,11 +1,25 @@
+@font-face {
+  font-family: 'main';
+  src: url('../assets/JosefinSans-Regular.ttf');
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'main', sans-serif;
+  color: whitesmoke;
+}
+
+
+html {
+  background: url('../assets/pokemongBackground.png') no-repeat center center;
+  background-size: cover;
 }
 
 #root {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 ul {
@@ -15,11 +29,20 @@ ul {
 button {
   width: fit-content;
   margin: 0 auto;
+  padding: 5px 10px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;;
+  border: 2px #FF0000 solid;
+  background: none;
+}
+
+button:hover {
+  cursor: grab;
 }
 
 main {
-  height: 85%;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 80vh;
 }

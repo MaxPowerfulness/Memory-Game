@@ -1,7 +1,13 @@
+@font-face {
+  font-family: 'pokemon';
+  src: url('../assets/PokemonHollowNormal-pyPZ.ttf');
+}
+
 #cardList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 100px;
+  row-gap: 50px;
+  column-gap: 100px;
   max-height: 90%;
 }
 
@@ -9,15 +15,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px black solid;
+  border: 3px rgba(0, 0, 0, 0.8) solid;
   height: 200px;
-  width: 175px
+  width: 175px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgb(255, 203, 5, 0.8);
 }
 
 .card:hover {
   cursor: grab;
+  border-color: #CC0000;
+  ;
 }
 
 .cardProperties {
   text-align: center;
+}
+
+.cardProperties h2 {
+  font-family: 'pokemon';
+  color: #2a75bb
+}
+
+img {
+  height: auto;
+  width: 110%;
 }

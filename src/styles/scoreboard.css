@@ -1,4 +1,14 @@
 #scoreboard {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 50px;
+}
+
+#scoreboard p {
+  font-size: 1.25rem;
+  font-weight: 800;
+  background-color: rgb(255, 203, 5, 0.8);
+  border-radius: 25px;
+  border: 1px solid #FF0000;
+  padding: 8px 15px
 }
