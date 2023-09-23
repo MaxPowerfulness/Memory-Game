@@ -20,12 +20,15 @@
   width: 175px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: rgb(255, 203, 5, 0.8);
+  transition: 0.3s;
 }
 
 .card:hover {
   cursor: grab;
-  border-color: #CC0000;
-  ;
+  border-color: #0539ff;
+  box-shadow: #0539ff 0px 5px 15px;
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
 }
 
 .cardProperties {
@@ -40,4 +43,8 @@
 img {
   height: auto;
   width: 110%;
+}
+
+.redBorder {
+  border-color: red;
 }

@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'main';
-  src: url('../assets/JosefinSans-Regular.ttf');
+  src: url('../assets/PixeloidSans-mLxMm.ttf');
 }
 
 * {
@@ -8,7 +8,7 @@
   padding: 0;
   margin: 0;
   font-family: 'main', sans-serif;
-  color: whitesmoke;
+  color: black;
 }
 
 
@@ -28,16 +28,18 @@ ul {
 
 button {
   width: fit-content;
-  margin: 0 auto;
-  padding: 5px 10px;
-  border-radius: 15px;
+  padding: 5px 15px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;;
-  border: 2px #FF0000 solid;
-  background: none;
+  border: 2px rgb(0, 0, 0, 0.7) solid;
+  background: transparent;
+  font-weight: 800;
 }
 
 button:hover {
   cursor: grab;
+  transform: scale(1.1); 
+  border: 2px rgba(255, 255, 255, 0.7) solid;
 }
 
 main {
