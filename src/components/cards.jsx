@@ -1,7 +1,18 @@
 import { v4 } from 'uuid';
 import '../styles/card.css';
 
-function CardCont({ characters, selectionList, clearSeletionList, resetCurrentScore, addOnePoint, assignBestScore }) {
+function CardCont({
+  characters,
+  selectionList,
+  clearSeletionList,
+  resetCurrentScore,
+  addOnePoint,
+  assignBestScore,
+  togglePopUp,
+  trigger,
+  currentScore,
+}) {
+  // Sets the first letter of a word to upper case
   function upperCaseFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
@@ -19,6 +30,9 @@ function CardCont({ characters, selectionList, clearSeletionList, resetCurrentSc
         addOnePoint={addOnePoint}
         characters={characters}
         assignBestScore={assignBestScore}
+        togglePopUp={togglePopUp}
+        trigger={trigger}
+        currentScore={currentScore}
       />
     );
   });
@@ -38,6 +52,9 @@ function Card({
   addOnePoint,
   characters,
   assignBestScore,
+  togglePopUp,
+  trigger,
+  currentScore,
 }) {
   // Shuffles the order of the cards
   function shuffleCharList(array) {
@@ -47,11 +64,15 @@ function Card({
     }
   }
 
+  // Action that occurs when a card is selected. Resets current score, selection list, and/or shuffles card list, and/or triggers winning popup
   function cardSelectionAction() {
     if (selectionList.includes(name)) {
       assignBestScore();
       resetCurrentScore();
       clearSeletionList();
+    } else if (characters.length - 1 === currentScore) {
+      assignBestScore();
+      togglePopUp(trigger);
     } else {
       selectionList.push(name);
       addOnePoint();

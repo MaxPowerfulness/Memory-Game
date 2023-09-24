@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Header from './header';
 import CardCont from './cards';
+import PopUp from './popUp';
 import '../styles/App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [gameCharacterData, setGameCharacterData] = useState([]);
   const [characters, setCharacters] = useState(['treecko', 'torchic', 'mudkip', 'pikachu']);
   const [selectionList, setSelectionList] = useState([]); // Keeps track of characters that have been selected
+  const [trigger, setTrigger] = useState(false);
 
   // Resets user selection list
   function clearSeletionList() {
@@ -29,7 +31,19 @@ function App() {
 
   // Stores scores after each round
   function assignBestScore() {
-    setBestScore([...bestScore, currentScore]);
+    setBestScore([...bestScore, currentScore + 1]);
+  }
+
+  // Toggles the boolean to control the PopUp display
+  function togglePopUp() {
+    setTrigger(!trigger);
+  }
+
+  // Resets the game by clearing selectionList and currentScore
+  function resetGame() {
+    togglePopUp();
+    setCurrentScore(0);
+    clearSeletionList();
   }
 
   // Changes the difficulty of the game by creating more pokemons to choose from.
@@ -89,11 +103,15 @@ function App() {
       <CardCont
         characters={gameCharacterData}
         selectionList={selectionList}
+        trigger={trigger}
+        currentScore={currentScore}
         clearSeletionList={clearSeletionList}
         resetCurrentScore={resetCurrentScore}
         addOnePoint={addOnePoint}
         assignBestScore={assignBestScore}
+        togglePopUp={togglePopUp}
       />
+      <PopUp trigger={trigger} resetGame={resetGame} />
     </>
   );
 }
