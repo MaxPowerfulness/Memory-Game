@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import Header from './header';
 import CardCont from './cards';
 import PopUp from './popUp';
-import '../styles/App.css';
 
 function App() {
   const [bestScore, setBestScore] = useState([0]);
