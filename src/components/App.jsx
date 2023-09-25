@@ -30,7 +30,7 @@ function App() {
 
   // Stores scores after each round
   function assignBestScore() {
-    setBestScore([...bestScore, currentScore + 1]);
+    setBestScore([...bestScore, currentScore]);
   }
 
   // Toggles the boolean to control the PopUp display
@@ -40,6 +40,7 @@ function App() {
 
   // Resets the game by clearing selectionList and currentScore
   function resetGame() {
+    assignBestScore();
     togglePopUp();
     setCurrentScore(0);
     clearSeletionList();
@@ -102,7 +103,6 @@ function App() {
       <CardCont
         characters={gameCharacterData}
         selectionList={selectionList}
-        trigger={trigger}
         currentScore={currentScore}
         clearSeletionList={clearSeletionList}
         resetCurrentScore={resetCurrentScore}

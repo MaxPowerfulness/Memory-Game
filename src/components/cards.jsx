@@ -9,7 +9,6 @@ function CardCont({
   addOnePoint,
   assignBestScore,
   togglePopUp,
-  trigger,
   currentScore,
 }) {
   // Sets the first letter of a word to upper case
@@ -31,7 +30,6 @@ function CardCont({
         characters={characters}
         assignBestScore={assignBestScore}
         togglePopUp={togglePopUp}
-        trigger={trigger}
         currentScore={currentScore}
       />
     );
@@ -53,7 +51,6 @@ function Card({
   characters,
   assignBestScore,
   togglePopUp,
-  trigger,
   currentScore,
 }) {
   // Shuffles the order of the cards
@@ -66,13 +63,15 @@ function Card({
 
   // Action that occurs when a card is selected. Resets current score, selection list, and/or shuffles card list, and/or triggers winning popup
   function cardSelectionAction() {
+    console.log('cl', characters.length);
+    console.log('cs', currentScore);
     if (selectionList.includes(name)) {
       assignBestScore();
       resetCurrentScore();
       clearSeletionList();
     } else if (characters.length - 1 === currentScore) {
-      assignBestScore();
-      togglePopUp(trigger);
+      addOnePoint();
+      togglePopUp();
     } else {
       selectionList.push(name);
       addOnePoint();
